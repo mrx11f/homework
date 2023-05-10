@@ -46,12 +46,12 @@ async def download_video(message: types.Message, state: FSMContext):
     title = yt.title
     video = open(f"video/{title}.mp4", "rb")
     audio = open(f"audio/{title}.mp3", "rb")
-
     await bot.send_video(message.chat.id, video)
     await bot.send_audio(message.chat.id, audio)
 
     os.remove(f'video/{title}.mp4')
     os.remove(f'audio/{title}.mp3')
+    
     video.close()
     await state.finish()
     
